@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using SignalRSimples.Web.Hubs;
 
 namespace SignalRSimples.Web
 {
@@ -15,6 +16,17 @@ namespace SignalRSimples.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Adicionando suporte ao SignalR
+            services.AddSignalR();
+
+            services.AddMvc();
+
+            // Configuro Cross-Origin
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,11 +36,16 @@ namespace SignalRSimples.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseCors("CorsPolicy");
 
-            app.Run(async (context) =>
+            // Configuro os hubs do SignalR
+            app.UseSignalR(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapHub<ChatHub>("/chathub");
             });
+
+            app.UseMvc();
         }
     }
 }
