@@ -1,0 +1,23 @@
+<div>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+  <div class="container">
+    <div class="row">
+        <div class="message-wrap col-lg-12">
+          <div class="send-wrap ">
+            <form class="input-group mb-3" (ngSubmit)="enviarMensagem($event)">
+              <input type="text" [(ngModel)]="this.mensagemTela" name="inptMensagem" class="form-control" />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+                </div>
+            </form>
+          </div>
+          <div *ngFor="let oMensagem of this.mensagens.reverse()" class="msg-wrap">
+            <div class="media-body">
+                <h5 class="media-heading">{{oMensagem.nome}}</h5>
+                <small>{{oMensagem.msg}}</small>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

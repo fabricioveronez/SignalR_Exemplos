@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SignalRSimples.Web.Modelo
+﻿namespace SignalRSimples.Web.Modelo
 {
     public class Mensagem
     {

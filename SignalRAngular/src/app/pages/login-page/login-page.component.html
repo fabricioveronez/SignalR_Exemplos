@@ -1,0 +1,18 @@
+<div class="container">
+  <form class="form-signin" (ngSubmit)="entrar($event)">
+    <h1 class="h3 mb-3 font-weight-normal">SignalR Chat</h1>
+    <label for="inpApelido" class="sr-only">Apelido</label>
+    <input
+      type="text"
+      id="inpApelido"
+      class="form-control"
+      placeholder="Apelido"
+      autofocus
+      [(ngModel)]="this.apelido"
+      name="inptApelido"
+    />
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Entrar
+    </button>
+  </form>
+</div>
