@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28606.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRBackPlane.Web", "SignalRBackPlane.Web\SignalRBackPlane.Web.csproj", "{BC3D51C6-C532-4591-9D6A-F078E2E5634F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{270135AF-BE88-4E20-B9A4-7FFD3F457639}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC3D51C6-C532-4591-9D6A-F078E2E5634F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC3D51C6-C532-4591-9D6A-F078E2E5634F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC3D51C6-C532-4591-9D6A-F078E2E5634F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC3D51C6-C532-4591-9D6A-F078E2E5634F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{270135AF-BE88-4E20-B9A4-7FFD3F457639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{270135AF-BE88-4E20-B9A4-7FFD3F457639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{270135AF-BE88-4E20-B9A4-7FFD3F457639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{270135AF-BE88-4E20-B9A4-7FFD3F457639}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD4744C0-D27D-48AF-BAD2-A7C5C6134F0A}
+	EndGlobalSection
+EndGlobal

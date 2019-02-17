@@ -13,7 +13,7 @@
           </div>
           <div *ngFor="let oMensagem of this.mensagens.reverse()" class="msg-wrap">
             <div class="media-body">
-                <h5 class="media-heading">{{oMensagem.nome}}</h5>
+                <h5 class="media-heading">{{oMensagem.nome}} - {{oMensagem.maquina}}</h5>
                 <small>{{oMensagem.msg}}</small>
             </div>
           </div>

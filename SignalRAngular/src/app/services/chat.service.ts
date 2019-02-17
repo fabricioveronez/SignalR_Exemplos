@@ -14,7 +14,7 @@ export class ChatService {
 
   constructor() {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(`${environment.url}/chathub`)
+      .withUrl(`${environment.url}/hubs/chat`)
       .configureLogging(LogLevel.Information)
       .build();
 

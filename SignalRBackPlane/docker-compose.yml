@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+
+  loadbalancer:
+    image: nginx
+    depends_on:
+      - signalrbackplaneweb01
+
+    ports:
+      - "5000:80"
+    networks:
+      - backplane
+    volumes:
+      - ./nginx.config:/etc/nginx/nginx.conf
+
+  signalrbackplaneweb01:
+    image: fabricioveronez/signalr-chat-backplane
+    build:
+      context: .
+      dockerfile: SignalRBackPlane.Web/Dockerfile
+    networks:
+      - backplane
+    depends_on:
+      - backplane-redis
+
+  backplane-redis:
+    image: redis:5.0-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - backplane
+
+networks: 
+  backplane: 
+    driver: bridge
