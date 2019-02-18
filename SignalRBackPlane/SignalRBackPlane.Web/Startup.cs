@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using SignalRBackPlane.Web.Hubs;
+using StackExchange.Redis;
+using System;
+using System.Net;
 
 namespace SignalRBackPlane.Web
 {
@@ -12,9 +15,42 @@ namespace SignalRBackPlane.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Adicionando suporte ao SignalR
+            //services.AddSignalR()
+            //    .AddStackExchangeRedis("backplane-redis,port: 6379", options => {
+            //        options.Configuration.ChannelPrefix = "ChatApp";
+            //    });
+
+
             services.AddSignalR()
-                .AddStackExchangeRedis("backplane-redis,port: 6379", options => {
-                    options.Configuration.ChannelPrefix = "ChatApp";
+                //.AddMessagePackProtocol()
+                .AddStackExchangeRedis(o =>
+                {
+                    o.ConnectionFactory = async writer =>
+                    {
+                        var config = new ConfigurationOptions
+                        {
+                            AbortOnConnectFail = false,
+                            ChannelPrefix = "ChatApp"
+                        };
+                        config.EndPoints.Add("backplaneredis", 0);
+                        config.SetDefaultPorts();
+                        var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
+                        connection.ConnectionFailed += (_, e) =>
+                        {
+                            Console.WriteLine("Connection to Redis failed.");
+                        };
+
+                        if (!connection.IsConnected)
+                        {
+                            Console.WriteLine("Did not connect to Redis.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Connect to Redis.");
+                        }
+
+                        return connection;
+                    };
                 });
 
             services.AddMvc();
