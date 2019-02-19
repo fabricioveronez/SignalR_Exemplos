@@ -19,7 +19,6 @@ namespace SignalRSimples.Web
 
             // Adicionando suporte ao SignalR
             services.AddSignalR();
-
             services.AddMvc();
         }
 
@@ -44,7 +43,7 @@ namespace SignalRSimples.Web
             // Configuro os hubs do SignalR
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chathub");
+                routes.MapHub<ChatHub>("/hubs/chat");
             });
 
             app.UseMvc();
