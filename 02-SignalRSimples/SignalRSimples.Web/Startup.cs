@@ -11,14 +11,8 @@ namespace SignalRSimples.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Configuro Cross-Origin
-            //services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
-            //{
-            //    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-            //}));
-
             // Adicionando suporte ao SignalR
-            services.AddSignalR();
+            services.AddSignalR().AddAzureSignalR("Endpoint=https://talksignalr.service.signalr.net;AccessKey=/T7hJWpEY32cYUi+9oimRhJy6urQrY0ACThgIUgCiUk=;Version=1.0;");
             services.AddMvc();
         }
 
@@ -30,8 +24,6 @@ namespace SignalRSimples.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseCors("CorsPolicy");
-
             app.UseCors(builder =>
             {
                 builder.WithOrigins("http://localhost:4200")
@@ -41,9 +33,9 @@ namespace SignalRSimples.Web
             });
 
             // Configuro os hubs do SignalR
-            app.UseSignalR(routes =>
+            app.UseAzureSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/hubs/chat");
+                routes.MapHub<ChatHub>("/hubs/chat");                
             });
 
             app.UseMvc();
