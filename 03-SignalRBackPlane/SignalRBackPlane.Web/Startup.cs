@@ -14,15 +14,7 @@ namespace SignalRBackPlane.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adicionando suporte ao SignalR
-            //services.AddSignalR()
-            //    .AddStackExchangeRedis("backplane-redis,port: 6379", options => {
-            //        options.Configuration.ChannelPrefix = "ChatApp";
-            //    });
-
-
             services.AddSignalR()
-                //.AddMessagePackProtocol()
                 .AddStackExchangeRedis(o =>
                 {
                     o.ConnectionFactory = async writer =>
@@ -66,7 +58,7 @@ namespace SignalRBackPlane.Web
 
             app.UseCors(builder =>
             {
-                builder.WithOrigins("http://localhost:4200")
+                builder.WithOrigins("http://localhost:4200/chat", "http://localhost:4200")
                     .AllowAnyHeader()
                     .WithMethods("GET", "POST")
                     .AllowCredentials();

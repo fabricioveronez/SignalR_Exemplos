@@ -12,7 +12,7 @@ namespace SignalRAzureServices.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Adicionando suporte ao SignalR
-            services.AddSignalR().AddAzureSignalR("<ConnectionString>");
+            services.AddSignalR().AddAzureSignalR("Endpoint=https://dotnetinside.service.signalr.net;AccessKey=lQtYADDPzyJPMAAB4XZ5bv2WqJ34lYXPhjFgnXU5bcc=;Version=1.0;");
             services.AddMvc();
         }
 
@@ -26,7 +26,7 @@ namespace SignalRAzureServices.Web
 
             app.UseCors(builder =>
             {
-                builder.WithOrigins("http://localhost:4200")
+                builder.WithOrigins("http://localhost:4200", "http://localhost:4200/chat")
                     .AllowAnyHeader()
                     .WithMethods("GET", "POST")
                     .AllowCredentials();
