@@ -12,7 +12,7 @@ namespace SignalRSimples.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Adicionando suporte ao SignalR
-            services.AddSignalR().AddAzureSignalR("Endpoint=https://talksignalr.service.signalr.net;AccessKey=/T7hJWpEY32cYUi+9oimRhJy6urQrY0ACThgIUgCiUk=;Version=1.0;");
+            services.AddSignalR();
             services.AddMvc();
         }
 
@@ -33,9 +33,9 @@ namespace SignalRSimples.Web
             });
 
             // Configuro os hubs do SignalR
-            app.UseAzureSignalR(routes =>
+            app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/hubs/chat");                
+                routes.MapHub<ChatHub>("/hubs/chat");
             });
 
             app.UseMvc();
